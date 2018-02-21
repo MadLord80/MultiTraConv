@@ -288,6 +288,31 @@ namespace MultiTraConv
             File.Delete(oma_file);
         }
 
+		private void test(object sender, EventArgs e)
+		{
+			//string file = "d://ID3V1andV2example.oma";
+			string file = "d://ID3V1andV2example.mp3";
+			FileStream in_file = new FileStream(file, FileMode.Open, FileAccess.Read);
+
+			byte[] ID3_head = new byte[10];
+			byte[] ea3_size = new byte[2];
+
+			in_file.Read(ID3_head, 0, ID3_head.Length);
+			////http://www.developerfusion.com/code/4684/read-mp3-tag-information-id3v1-and-id3v2/
+			int[] bytes = new int[4];      // for bit shifting
+			bytes[3] = ID3_head[9] | ((ID3_head[8] & 1) << 7);
+			bytes[2] = ((ID3_head[8] >> 1) & 63) | ((ID3_head[7] & 3) << 6);
+			bytes[1] = ((ID3_head[7] >> 2) & 31) | ((ID3_head[6] & 7) << 5);
+			bytes[0] = ((ID3_head[6] >> 3) & 15);
+
+			ulong ID3Size = ((UInt64)10 + (UInt64)bytes[3] |
+				((UInt64)bytes[2] << 8) |
+				((UInt64)bytes[1] << 16) |
+				((UInt64)bytes[0] << 24));
+
+			in_file.Close();
+		}
+
         private void stop_convert_Click(object sender, EventArgs e)
         {
             to_stop = true;
@@ -304,30 +329,5 @@ namespace MultiTraConv
             HelpPage hp = new HelpPage();
             hp.ShowDialog();
         }
-
-		private string toUTF8(string text)
-		{
-			if (text == null || text.Length == 0) return "";
-			return new string(text.ToCharArray().
-				Select(x => ((x + 848) >= 'А' && (x + 848) <= 'ё') ? (char)(x + 848) : x).
-				ToArray()
-			);
-		}
-
-		private void button1_Click_1(object sender, EventArgs e)
-		{
-			//TagLib.File file = TagLib.File.Create("d:\\ID3V1andV2example.mp3");
-			//TagLib.File file = TagLib.File.Create("d:\\ID3V1andV2example.oma");
-			//TagLib.File file = TagLib.File.Create("d:\\01-Butch--Не Дали.mp3");
-			TagLib.File file = TagLib.File.Create("d:\\01-Butch--Не Дали.oma");
-
-			Console.WriteLine("Artist: " + ((file.Tag.Performers.Length > 0) ? toUTF8(file.Tag.Performers[0]) : "Failed!!!"));
-			Console.WriteLine("Title: " + toUTF8(file.Tag.Title));
-			Console.WriteLine("Album: " + toUTF8(file.Tag.Album));
-			//char[] tt = file.Tag.Title.ToCharArray();
-			//Console.WriteLine(Encoding.Default == Encoding.GetEncoding(1251));
-			//string name1 = Encoding.UTF8.GetString(Encoding.Convert(Encoding.GetEncoding(1251), Encoding.UTF8, Encoding.GetEncoding(1251).GetBytes(file.Tag.Title)));
-			
-		}
 	}
 }

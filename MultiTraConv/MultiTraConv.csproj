@@ -67,16 +67,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="TagLib\Ape\File.cs" />
-    <Compile Include="TagLib\Ape\Footer.cs" />
-    <Compile Include="TagLib\Ape\Item.cs" />
-    <Compile Include="TagLib\Ape\StreamHeader.cs" />
-    <Compile Include="TagLib\Ape\Tag.cs" />
-    <Compile Include="TagLib\ByteVector.cs" />
-    <Compile Include="TagLib\ByteVectorList.cs" />
-    <Compile Include="TagLib\CombinedTag.cs" />
-    <Compile Include="TagLib\CorruptFileException.cs" />
-    <Compile Include="TagLib\File.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -89,48 +79,7 @@
     <Compile Include="HelpPage.Designer.cs">
       <DependentUpon>HelpPage.cs</DependentUpon>
     </Compile>
-    <Compile Include="TagLib\FileTypes.cs" />
-    <Compile Include="TagLib\Genres.cs" />
-    <Compile Include="TagLib\ICodec.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="TagLib\Id3v1\StringHandler.cs" />
-    <Compile Include="TagLib\Id3v1\Tag.cs" />
-    <Compile Include="TagLib\Id3v2\ExtendedHeader.cs" />
-    <Compile Include="TagLib\Id3v2\Footer.cs" />
-    <Compile Include="TagLib\Id3v2\Frame.cs" />
-    <Compile Include="TagLib\Id3v2\FrameFactory.cs" />
-    <Compile Include="TagLib\Id3v2\FrameHeader.cs" />
-    <Compile Include="TagLib\Id3v2\Frames\AttachedPictureFrame.cs" />
-    <Compile Include="TagLib\Id3v2\Frames\CommentsFrame.cs" />
-    <Compile Include="TagLib\Id3v2\Frames\GeneralEncapsulatedObjectFrame.cs" />
-    <Compile Include="TagLib\Id3v2\Frames\MusicCdIdentifierFrame.cs" />
-    <Compile Include="TagLib\Id3v2\Frames\PlayCountFrame.cs" />
-    <Compile Include="TagLib\Id3v2\Frames\PopularimeterFrame.cs" />
-    <Compile Include="TagLib\Id3v2\Frames\PrivateFrame.cs" />
-    <Compile Include="TagLib\Id3v2\Frames\RelativeVolumeFrame.cs" />
-    <Compile Include="TagLib\Id3v2\Frames\SynchronizedLyricsFrame.cs" />
-    <Compile Include="TagLib\Id3v2\Frames\TermsOfUseFrame.cs" />
-    <Compile Include="TagLib\Id3v2\Frames\TextIdentificationFrame.cs" />
-    <Compile Include="TagLib\Id3v2\Frames\UniqueFileIdentifierFrame.cs" />
-    <Compile Include="TagLib\Id3v2\Frames\UnknownFrame.cs" />
-    <Compile Include="TagLib\Id3v2\Frames\UnsynchronisedLyricsFrame.cs" />
-    <Compile Include="TagLib\Id3v2\Frames\UrlLinkFrame.cs" />
-    <Compile Include="TagLib\Id3v2\FrameTypes.cs" />
-    <Compile Include="TagLib\Id3v2\Header.cs" />
-    <Compile Include="TagLib\Id3v2\SynchData.cs" />
-    <Compile Include="TagLib\Id3v2\Tag.cs" />
-    <Compile Include="TagLib\ListBase.cs" />
-    <Compile Include="TagLib\Mpeg\AudioFile.cs" />
-    <Compile Include="TagLib\Mpeg\AudioHeader.cs" />
-    <Compile Include="TagLib\Mpeg\File.cs" />
-    <Compile Include="TagLib\Mpeg\VBRIHeader.cs" />
-    <Compile Include="TagLib\Mpeg\VideoHeader.cs" />
-    <Compile Include="TagLib\Mpeg\XingHeader.cs" />
-    <Compile Include="TagLib\NonContainer\EndTag.cs" />
-    <Compile Include="TagLib\NonContainer\File.cs" />
-    <Compile Include="TagLib\NonContainer\StartTag.cs" />
-    <Compile Include="TagLib\NonContainer\Tag.cs" />
-    <Compile Include="TagLib\Properties.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SettingsPage.cs">
       <SubType>Form</SubType>
@@ -138,21 +87,6 @@
     <Compile Include="SettingsPage.Designer.cs">
       <DependentUpon>SettingsPage.cs</DependentUpon>
     </Compile>
-    <Compile Include="TagLib\ReadOnlyByteVector.cs" />
-    <Compile Include="TagLib\Riff\AviHeaderList.cs" />
-    <Compile Include="TagLib\Riff\AviStream.cs" />
-    <Compile Include="TagLib\Riff\BitmapInfoHeader.cs" />
-    <Compile Include="TagLib\Riff\DivXTag.cs" />
-    <Compile Include="TagLib\Riff\File.cs" />
-    <Compile Include="TagLib\Riff\InfoTag.cs" />
-    <Compile Include="TagLib\Riff\List.cs" />
-    <Compile Include="TagLib\Riff\ListTag.cs" />
-    <Compile Include="TagLib\Riff\MovieIdTag.cs" />
-    <Compile Include="TagLib\Riff\WaveFormatEx.cs" />
-    <Compile Include="TagLib\StringList.cs" />
-    <Compile Include="TagLib\SupportedMimeType.cs" />
-    <Compile Include="TagLib\Tag.cs" />
-    <Compile Include="TagLib\UnsupportedFormatException.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -204,7 +138,6 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
