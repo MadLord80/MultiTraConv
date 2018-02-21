@@ -159,7 +159,7 @@ namespace MultiTraConv
                     if (! File.Exists(new_path_sc) && to_sc)
                     {
                         change_header(new_path, NNN_cnt);
-                        row.SubItems[1].Text = "converted";
+                        row.SubItems[1].Text = "convered";
                         NNN_cnt++;
                     }
                     else
@@ -213,7 +213,7 @@ namespace MultiTraConv
             }
             else
             {
-                item.SubItems[1].Text = "converted";
+                item.SubItems[1].Text = "convered";
                 if (to_sc) change_header(new_path, NNN);
                 this.progressBar.PerformStep();
                 this.conv_count.Text = this.progressBar.Value.ToString();
@@ -240,19 +240,7 @@ namespace MultiTraConv
             FileStream in_file = new FileStream(oma_file, FileMode.Open, FileAccess.Read);
             FileStream out_file = new FileStream(sc_file, FileMode.Create, FileAccess.Write);
 
-			//OMA files
-			//These are the actual MP3 files. The file starts with a tag "ea3";
-			//replacing the "ea" with "ID" turns this into an ID3 block, complete
-			//with size tag, which can be read with a standard ID3 library.So far
-			//all sample files have had 3072 bytes of ID3 data on the device,
-			//regardless of the amount in the input files.After the ID3 tag there
-			//is a second block starting with either "ea3" or "EA3"(not sure why
-			//there's a case difference, nor whether it changes between
-			//versions).The next byte, 0x02, is probably part of this
-			//signature.The next 16 - bit word is the size of the header including
-			//the 4 - byte signature.Immediately after the header is the mp3 data
-
-			byte[] ID3_head = new byte[10];
+            byte[] ID3_head = new byte[10];
             byte[] ea3_size = new byte[2];
 
             in_file.Read(ID3_head, 0, ID3_head.Length);
@@ -268,13 +256,10 @@ namespace MultiTraConv
                 ((UInt64)bytes[1] << 16) |
                 ((UInt64)bytes[0] << 24));
 
-			// 0x100 - ???
-			// 4 - second ea3 header tag
-			int ea3_offset = (int)(ID3Size + 0x100 + 4);
+            int ea3_offset = (int)(ID3Size + 0x100 + 4);
             in_file.Position = ea3_offset;
 
-			// 2 bytes - second ea3 header length
-			in_file.Read(ea3_size, 0, ea3_size.Length);
+            in_file.Read(ea3_size, 0, ea3_size.Length);
 
             Array.Reverse(ea3_size);
             int ea3Size = BitConverter.ToInt16(ea3_size, 0);
@@ -287,31 +272,6 @@ namespace MultiTraConv
             out_file.Close();
             File.Delete(oma_file);
         }
-
-		private void test(object sender, EventArgs e)
-		{
-			//string file = "d://ID3V1andV2example.oma";
-			string file = "d://ID3V1andV2example.mp3";
-			FileStream in_file = new FileStream(file, FileMode.Open, FileAccess.Read);
-
-			byte[] ID3_head = new byte[10];
-			byte[] ea3_size = new byte[2];
-
-			in_file.Read(ID3_head, 0, ID3_head.Length);
-			////http://www.developerfusion.com/code/4684/read-mp3-tag-information-id3v1-and-id3v2/
-			int[] bytes = new int[4];      // for bit shifting
-			bytes[3] = ID3_head[9] | ((ID3_head[8] & 1) << 7);
-			bytes[2] = ((ID3_head[8] >> 1) & 63) | ((ID3_head[7] & 3) << 6);
-			bytes[1] = ((ID3_head[7] >> 2) & 31) | ((ID3_head[6] & 7) << 5);
-			bytes[0] = ((ID3_head[6] >> 3) & 15);
-
-			ulong ID3Size = ((UInt64)10 + (UInt64)bytes[3] |
-				((UInt64)bytes[2] << 8) |
-				((UInt64)bytes[1] << 16) |
-				((UInt64)bytes[0] << 24));
-
-			in_file.Close();
-		}
 
         private void stop_convert_Click(object sender, EventArgs e)
         {
@@ -329,5 +289,5 @@ namespace MultiTraConv
             HelpPage hp = new HelpPage();
             hp.ShowDialog();
         }
-	}
+    }
 }
